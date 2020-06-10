@@ -7,8 +7,11 @@
     </div>
     <div class="field">
     <%= f.label :date %>
-    <%= f.text_field :appointment_date, required: true, placeholder: 'put in a date' %>
+    <%= f.date_field :appointment_date, required: true, placeholder: 'put in a date' %>
     </div>
     <%= f.submit nil, class: 'ui purple button' %>
 
+    <% if flash[:notice] %>
+    <div class="notice"><%= flash[:notice] %></div>
+  <% end %>
     <% end %>

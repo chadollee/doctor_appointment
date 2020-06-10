@@ -2,13 +2,12 @@ class AppointmentsController < ApplicationController
   before_action :set_physician, except: [:index, :show]
   # before_action :set_patient
   def index
-  #   @test = 1
-  #   @appointment = @patient.appointments.new
-  #   @physicians = Physician.all
+    
    end
 
   def new
     # @test = 0
+    
      @appointment = @physician.appointments.new
      @patients = Patient.all
   end
@@ -16,28 +15,16 @@ class AppointmentsController < ApplicationController
   def create
 
     # if @test == 0
-
+        @patients = Patient.all
         @appointment = @physician.appointments.new(appointment_params)
         if @appointment.save
           redirect_to physician_path(@physician)
         else
-        render :index
-        
+          flash[:notice] = "Error, date must be after Today"
+          render :new
         end
 
 
-      # elsif @test == 1
-    
-      #   @appointment = @patient.appointments.new(appointment_params)
-      #   if @appointment.save
-      #     redirect_to patient_path(@patient)
-      #   else
-      #   render :index
-        
-      #   end
-
-    
-    # end
     end
 
   def edit
