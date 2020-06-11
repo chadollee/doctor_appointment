@@ -10,7 +10,7 @@ class PhysiciansController < ApplicationController
   end
   def new
     @physician = Physician.new
-    render partial: 'form'
+    
   end
   def create
     @physician = Physician.new(physician_params)
@@ -21,7 +21,7 @@ class PhysiciansController < ApplicationController
     end
   end
   def edit
-    render partial: 'form'
+    
   end
   def update
     if @physician.update(physician_params)

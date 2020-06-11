@@ -9,7 +9,9 @@ with <%= (@physicians.find(@appointment.physician_id)).name %>
 
 <br />
 <br />
-[put details here]
+This appointment is scheduled for: 
+<%= @appointment.appointment_date.to_date %>
+<br />
 
 <br />
-Edit and Delete Actions needed here
+<%= link_to 'Edit Appointment',  edit_physician_appointment_path, class: 'ui blue button'	%>

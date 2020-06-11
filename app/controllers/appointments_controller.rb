@@ -23,14 +23,23 @@ class AppointmentsController < ApplicationController
           flash[:notice] = "Error, date must be after Today"
           render :new
         end
-
-
     end
 
   def edit
-    
-    @appointment = @physician.appointments.new
+    @appointment = @physician.appointments.find(params[:id])
     @patients = Patient.all
+  end
+
+  def update
+    @patients = Patient.all
+
+    @appointment = @physician.appointments.find(params[:id])
+    if @appointment.update(appointment_params)
+      redirect_to root_path
+    else
+      render :edit
+      flash[:notice] = "Error, date must be after Today"
+    end
   end
 
   def show
@@ -38,6 +47,7 @@ class AppointmentsController < ApplicationController
     @patients = Patient.all
     @physicians = Physician.all
   end
+
 
   def destroy
     @appointment = @physician.appointments.find(params[:id])
